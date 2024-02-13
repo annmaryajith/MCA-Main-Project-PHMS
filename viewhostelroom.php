@@ -18,7 +18,7 @@
     height: 100%;
     overflow-y: auto;
     position: fixed;
-    background-color: #333;
+    background-color: #001f3f; /* Dark blue background color */
     color: #fff;
 }
 
@@ -30,7 +30,7 @@
 }
 
 .sidebar a:hover {
-    background-color: #555;
+    background-color: #003366; /* Slightly lighter shade of blue on hover */
 }
 
 .main-content {
@@ -76,7 +76,7 @@ th {
     <body>
     <div class="container">
         <div class="sidebar">
-            <h2>   PHMS | Owner</h2>
+            <h2>   PHMS | Hostel Owner</h2>
             <ul>
                 <li><a href="hostelowner_dashboard.php">Home</a></li>
                 <li><a href="addhostelroom.php">Add Rooms</a></li>
@@ -150,14 +150,15 @@ if ($room_result->num_rows > 0) {
 }
 ?>
     <script>
-    function changeStatus(roomNumber, newStatus) {
+     function changeStatus(roomNumber, currentStatus) {
+        var newStatus = currentStatus === 1 ? 0 : 1; // Toggle status
         if (confirm(`Are you sure you want to ${newStatus === 1 ? 'activate' : 'deactivate'} this room?`)) {
-            fetch('change_hostelroomstatus.php', {
+            fetch('change_status.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ roomNumber, newStatus }),
+                body: JSON.stringify({ roomNumber: roomNumber, newStatus: newStatus }),
             })
             .then(response => response.json())
             .then(data => {
@@ -175,4 +176,4 @@ if ($room_result->num_rows > 0) {
 </script>
 
 </body>
-</html>
+</html
