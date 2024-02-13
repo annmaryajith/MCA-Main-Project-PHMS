@@ -55,24 +55,81 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_room'])) {
 
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Room</title>
-    <!-- Include your CSS styles here -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #001f3f; /* Dark blue background matching sidebar */
+            color: #fff; /* White text */
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #003366; /* Slightly lighter shade of blue on hover */
+        }
+
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
-    <h2>Update Room</h2>
-    <form method="post" action="">
-        <label for="room_number">Room Number:</label>
-        <input type="text" name="room_number" id="room_number" value="<?php echo $room_data['room_number']; ?>" readonly>
-        <label for="room_type">Room Type:</label>
-        <input type="text" name="room_type" id="room_type" value="<?php echo $room_data['room_type']; ?>" required>
-        <label for="price">Price:</label>
-        <input type="number" name="price" id="price" value="<?php echo $room_data['price']; ?>" required>
-        <input type="submit" name="update_room" value="Update Room">
-    </form>
-    <?php if (isset($update_error)) echo '<div class="error">' . $update_error . '</div>'; ?>
+    <div class="container">
+        <h2>Update Room</h2>
+        <form method="post" action="">
+            <label for="room_number">Room Number:</label>
+            <input type="text" name="room_number" id="room_number" value="<?php echo $room_data['room_number']; ?>" readonly>
+            <label for="room_type">Room Type:</label>
+            <input type="text" name="room_type" id="room_type" value="<?php echo $room_data['room_type']; ?>" required>
+            <label for="price">Price:</label>
+            <input type="number" name="price" id="price" value="<?php echo $room_data['price']; ?>" required>
+            <input type="submit" name="update_room" value="Update Room">
+        </form>
+        <?php if (isset($update_error)) echo '<div class="error">' . $update_error . '</div>'; ?>
+    </div>
 </body>
 </html>
+
