@@ -18,7 +18,7 @@
     height: 100%;
     overflow-y: auto;
     position: fixed;
-    background-color: #333;
+    background-color: #001f3f; /* Dark blue background color */
     color: #fff;
 }
 
@@ -30,7 +30,7 @@
 }
 
 .sidebar a:hover {
-    background-color: #555;
+    background-color: #003366; /* Slightly lighter shade of blue on hover */
 }
 
 .main-content {
@@ -44,7 +44,7 @@
 <body>
     <div class="container">
         <div class="sidebar">
-            <h2>PHMS | Owner</h2>
+            <h2>PHMS | Hostel Owner</h2>
             <ul>
                 <li><a href="hostelowner_dashboard.php">Home</a></li>
                 <li><a href="addhostelroom.php">Add Rooms</a></li>
