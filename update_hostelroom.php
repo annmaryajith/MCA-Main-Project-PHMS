@@ -43,8 +43,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_room'])) {
     // Update the room details in the database
     $update_query = "UPDATE hostel_rooms SET room_type = '$room_type', price = '$price' WHERE room_number = '$room_number'";
     if ($conn->query($update_query) === TRUE) {
-        // Redirect back to the viewhostelroom page after successful update
-        header("Location: viewhostelroom.php");
+        // Display success message and redirect to viewhostelroom page
+        echo "<script>alert('Room updated successfully.'); window.location.href = 'viewhostelroom.php';</script>";
         exit();
     } else {
         // Handle update error
@@ -52,6 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_room'])) {
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html>
