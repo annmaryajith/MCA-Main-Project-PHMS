@@ -5,39 +5,42 @@ session_start();
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Room</title>
     <style>
-        body {
+        /* body {
             font-family: Arial, sans-serif;
             background-color: #f9f9f9;
-        }
+        } */
 
         form {
-            margin: 20px;
+            margin: 20px auto;
             padding: 20px;
             border: 1px solid #ccc;
             border-radius: 8px;
             background-color: #fff;
-            width: 300px;
+            max-width: 600px;
         }
+
 
         label {
             display: block;
             margin-bottom: 5px;
         }
 
-        input,
+        input[type="text"],
+        input[type="number"],
         select {
-            width: calc(100% - 10px);
+            box-sizing: border-box; /* Include padding and border in the element's total width */
+            width: calc(100% - 18px); /* Adjust width to accommodate padding and border */
             padding: 8px;
             margin-bottom: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
         }
+
 
         .error {
             color: red;
@@ -45,28 +48,33 @@ session_start();
         }
 
         input[type="submit"] {
-            background-color: #000;
-            color: #fff;
-            padding: 8px 16px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+    background-color: #001f3f; /* Dark blue background matching sidebar */
+    color: #fff; /* White text */
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #003366; /* Slightly lighter shade of blue on hover */
+}
+
         body {
-    font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
-}
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
 
-.container {
-    display: flex;
-}
+        .container {
+            display: flex;
+        }
 
-.sidebar {
+        .sidebar {
     width: 250px;
     height: 100%;
     overflow-y: auto;
     position: fixed;
-    background-color: #333;
+    background-color: #001f3f; /* Dark blue background color */
     color: #fff;
 }
 
@@ -78,25 +86,31 @@ session_start();
 }
 
 .sidebar a:hover {
-    background-color: #555;
+    background-color: #003366; /* Slightly lighter shade of blue on hover */
 }
 
-.main-content {
-    margin-left: 250px;
-    padding: 20px;
-    background-color: #fff;
-}
+
+        h2 {
+            text-align: center; /* Center the heading */
+        }
+
+        .main-content {
+            padding: 20px;
+            background-color: #fff;
+            width: calc(100% - 250px); /* Adjust the width dynamically based on the sidebar width */
+        }
+
     </style>
 </head>
-
 <body>
 <div class="container">
         <div class="sidebar">
-            <h2>PG Owner Dashboard</h2>
+            <h2>Hostel Owner Dashboard</h2>
             <ul>
             <li><a href="hostelowner_dashboard.php">Home</a></li>
                 <li><a href="addhostelroom.php">Add Rooms</a></li>
-                <li><a href="hostelroomupdate.php">Update room</a></li>
+                <li><a href="viewhostelroom.php">View Rooms</a></li>
+                <!-- <li><a href="hostelroomupdate.php">Update room</a></li> -->
                 <li><a href="hostelownerupdate.php">Update</a></li>
                 <!-- <li><a href="manage_tenants.php">Manage Tenants</a></li>
                 <li><a href="reports.php">Reports</a></li> -->
@@ -116,6 +130,7 @@ session_start();
         if ($owner_result->num_rows > 0) {
             $owner_row = $owner_result->fetch_assoc();
             $hostel_owner = $owner_row['username'];
+            $hostel_name = $owner_row['hostel_name'];
 
             if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_room'])) {
                 $room_number = $_POST['room_number'];
@@ -123,7 +138,7 @@ session_start();
                 $price = $_POST['price'];
 
                 // Insert room details into the hostel_rooms table
-                $insert_room_sql = "INSERT INTO hostel_rooms (hostel_name, room_number, room_type, price) VALUES ('$hostel_owner', '$room_number', '$room_type', $price)";
+                $insert_room_sql = "INSERT INTO hostel_rooms (hostel_name, room_number, room_type, price) VALUES ('$hostel_name', '$room_number', '$room_type', $price)";
 
                 if ($conn->query($insert_room_sql) === TRUE) {
                     echo '<script>alert("Room added successfully!");</script>';
@@ -169,5 +184,4 @@ session_start();
     ?>
         </div>
 </body>
-
 </html>
