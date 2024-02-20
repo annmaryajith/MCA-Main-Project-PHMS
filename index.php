@@ -30,12 +30,14 @@
   <link href="css/responsive.css" rel="stylesheet" />
 
   <style>
- .detail-box {
-  background-color: #ffffff; /* White background color */
-  padding: 20px; /* Add padding to create space inside the box */
-  color: #000000; /* Black color for text */
-}
-
+  .detail-box {
+    background-color: #ffffff; /* White background color */
+    padding: 20px; /* Add padding to create space inside the box */
+    color: #000000; /* Black color for text */
+  }
+  .box {
+    background-color: #ffffff; /* White background color */
+  }
 </style>
 </head>
 
