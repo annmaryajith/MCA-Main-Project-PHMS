@@ -1,9 +1,8 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <!-- Basic -->
-  <meta charset="utf-8" />
+  <title>PHMS</title>
+<meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <!-- Mobile Metas -->
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -12,8 +11,6 @@
   <meta name="description" content="" />
   <meta name="author" content="" />
   <link rel="shortcut icon" href="images/favicon.png" type="">
-
-  <title> PHMS </title>
 
   <!-- bootstrap core css -->
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
@@ -28,24 +25,51 @@
   <link href="css/font-awesome.min.css" rel="stylesheet" />
 
   <!-- Custom styles for this template -->
-  <link href="css/style.css" rel="stylesheet" />
+  <link href="css/styleuser.css" rel="stylesheet" />
   <!-- responsive style -->
   <link href="css/responsive.css" rel="stylesheet" />
 
+  <style>
+ .detail-box {
+  background-color: #ffffff; /* White background color */
+  padding: 20px; /* Add padding to create space inside the box */
+  color: #000000; /* Black color for text */
+}
+
+</style>
 </head>
 
 <body>
 
   <div class="hero_area">
 
-    <div class="hero_bg_box">
-      <div class="bg_img_box">
-        <img src="images/login.jpg" width="100%" height="100%">
-      </div>
-    </div>
-
     <!-- header section strats -->
-    <header class="header_section">
+    <!-- <header class="header_section">
+      <div class="header_top">
+        <div class="container-fluid ">
+          <div class="contact_nav">
+            <a href="">
+              <i class="fa fa-phone" aria-hidden="true"></i>
+              <span>
+                Call : +01 123455678990
+              </span>
+            </a>
+            <a href="">
+              <i class="fa fa-envelope" aria-hidden="true"></i>
+              <span>
+                Email : demo@gmail.com
+              </span>
+            </a>
+            <a href="">
+              <i class="fa fa-map-marker" aria-hidden="true"></i>
+              <span>
+                Location
+              </span>
+            </a>
+          </div>
+        </div>
+      </div> -->
+      <header class="header_section">
       <div class="container-fluid">
         <nav class="navbar navbar-expand-lg custom_nav-container ">
           <a class="navbar-brand" href="">
@@ -53,15 +77,17 @@
               PHMS
             </span>
           </a>
-
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class=""> </span>
           </button>
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav  ">
-              <li class="nav-item active">
-                <a class="nav-link" href="">Home <span class="sr-only">(current)</span></a>
+              <!-- <li class="nav-item active">
+                <a class="nav-link" href="userhome.php">Home <span class="sr-only">(current)</span></a>
+              </li> -->
+              <li class="nav-item">
+                <a class="nav-link" href="index.php"> Home</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href=""> PG</a>
@@ -69,7 +95,7 @@
               <li class="nav-item">
                 <a class="nav-link" href="">HOSTEL</a>
               <li class="nav-item">
-                <a class="nav-link" href="register.php">REGISTER</a>
+                <a class="nav-link" href="register.php">Register</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="login.php"> <i class="fa fa-user" aria-hidden="true"></i> Login</a>
@@ -83,28 +109,31 @@
     <!-- end header section -->
     <!-- slider section -->
     <section class="slider_section ">
+      <div class="slider_bg_box">
+        <img src="images/login.jpg" >
+      </div>
       <div id="customCarousel1" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">
             <div class="container ">
               <div class="row">
-                <div class="col-md-6 ">
+                <div class="col-md-7 ">
                   <div class="detail-box">
                     <h1>
-                        Affordable <br>
+                      Affordable <br>
                         Accomodation
                     </h1>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="img-box">
-                   <!-- <img src="" alt=""> -->
+                    <!-- <p>
+                      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum magnam, voluptates distinctio, officia architecto tenetur debitis hic aspernatur libero commodi atque fugit adipisci, blanditiis quidem dolorum odit voluptas? Voluptate, eveniet?
+                    </p> -->
                   </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
       </div>
+
     </section>
     <!-- end slider section -->
   </div>
@@ -115,21 +144,23 @@
   <section class="service_section layout_padding">
     <div class="service_container">
       <div class="container ">
-        <div class="heading_container heading_center">
+        <div class="heading_container">
           <h2>
             Our <span>Services</span>
           </h2>
-          
+          <!-- <p>
+            There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
+          </p> -->
         </div>
         <div class="row">
-          <div class="col-md-4 ">
+          <div class="col-md-6 ">
             <div class="box ">
               <div class="img-box">
-                <!--<img src=""images/img9.png" alt=""> -->
+                <!-- <img src="images/s1.png" alt=""> -->
               </div>
               <div class="detail-box">
                 <h5>
-                    Spacious<br>
+                  Spacious<br>
                     rooms
                 </h5>
                 <p>
@@ -138,36 +169,56 @@
               </div>
             </div>
           </div>
-          <div class="col-md-4 ">
+          <div class="col-md-6 ">
             <div class="box ">
               <div class="img-box">
-                <!--<img src="{% static "images/img8.jpeg" %}" alt=""> {% endcomment %} -->
+                <!-- <img src="images/s2.png" alt=""> -->
               </div>
               <div class="detail-box">
                 <h5>
-                    Water<br>
-                    Facility
+                  Water<br>
+                  Facility
                 </h5>
                 <p>
                   We provide purified drinking water and hot water for bathing everyday, all day long.
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 ">
-            <div class="box ">
-              <div class="img-box">
-                <!--<img src="{% static "images/img7.jpg" %}" alt=""> -->
-              </div>
-              <div class="detail-box">
-                <h5>
-                    Hygenic food
-                </h5>
-                <p>
-                  We offer a wide range of meals at best quality and ensure complete hygiene in the mess.
                 </p>
               </div>
             </div>
           </div>
+          <div class="col-md-6 ">
+            <div class="box ">
+              <div class="img-box">
+                <!-- <img src="images/s3.png" alt=""> -->
+              </div>
+              <div class="detail-box">
+                <h5>
+                  Hygenic food
+                </h5>
+                <p>
+                  We offer a wide range of meals at best quality and ensure complete hygiene in the mess.
+                </p>
+            </div>
+          </div>
+          <!-- <div class="col-md-6 ">
+            <div class="box ">
+              <div class="img-box">
+                <img src="images/s4.png" alt="">
+              </div>
+              <div class="detail-box">
+                <h5>
+                  Train Transport
+                </h5>
+                <p>
+                  fact that a reader will be distracted by the readable content of a page when looking at its layout.
+                  The
+                  point of using
+                </p>
+                <a href="">
+                  Read More
+                </a>
+              </div>
+            </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -178,27 +229,16 @@
 
   <!-- about section -->
 
-  <section class="about_section layout_padding">
+  <section class="about_section layout_padding-bottom">
     <div class="container  ">
-      <div class="heading_container heading_center">
-        <h2>
-          About <span>Us</span>
-        </h2>
-        <!-- <p>
-          Our aim to provide housing solutions to people who are away from their home for either studies or for work. 
-          We are reputed for providing multiple hostel and pg accommodation facilities on daily and monthly basis. 
-          Located at anywhere we make sure to avail the utmost comfort by providing spacious rooms with all the amenities.
-          We strive to serve customers with the best of our ability and facilities for their peaceful and safe stay at our accommodations.
-        </p> -->
-      </div>
       <div class="row">
-        <div class="col-md-6 ">
-          <div class="img-box">
-            <!--<img src="{% static "images/" %}" alt=""> -->
-          </div>
-        </div>
         <div class="col-md-6">
           <div class="detail-box">
+            <div class="heading_container">
+              <h2>
+                About <span>Us</span>
+              </h2>
+            </div>
             <p>
               Our aim to provide housing solutions to people who are away from their home for either studies or for work. 
               We are reputed for providing multiple hostel and pg accommodation facilities on daily and monthly basis. 
@@ -207,11 +247,204 @@
             </p>
           </div>
         </div>
+        <div class="col-md-6 ">
+          <div class="img-box">
+            <!-- <img src="images/about-img.jpg" alt=""> -->
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
   <!-- end about section -->
+
+  <!-- track section -->
+
+  <!-- <section class="track_section layout_padding">
+    <div class="track_bg_box">
+      <img src="images/track-bg.jpg" alt="">
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="heading_container">
+            <h2>
+              Track Your Shipment
+            </h2>
+          </div>
+          <p>
+            Iste reprehenderit maiores facilis saepe cumque molestias. Labore iusto excepturi, laborum aliquid pariatur veritatis autem, mollitia sint nesciunt hic error porro.
+            Deserunt officia unde repellat beatae ipsum sed. Aperiam tempora consectetur voluptas magnam maxime asperiores quas similique repudiandae, veritatis reiciendis harum fuga atque.
+          </p>
+          <form action="">
+            <input type="text" placeholder="Enter Your Tracking Number" />
+            <button type="submit">
+              Track
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+  <!-- end track section -->
+
+  <!-- client section -->
+
+  <!-- <section class="client_section layout_padding">
+    <div class="container">
+      <div class="heading_container">
+        <h2>
+          What Says Our <span>Client</span>
+        </h2>
+      </div>
+      <div class="client_container">
+        <div class="carousel-wrap ">
+          <div class="owl-carousel">
+            <div class="item">
+              <div class="box">
+                <div class="detail-box">
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                  </p>
+                </div>
+                <div class="client_id">
+                  <div class="img-box">
+                    <img src="images/client-1.png" alt="" class="img-1">
+                  </div>
+                  <div class="name">
+                    <h6>
+                      Adipiscing
+                    </h6>
+                    <p>
+                      Magna
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="box">
+                <div class="detail-box">
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                  </p>
+                </div>
+                <div class="client_id">
+                  <div class="img-box">
+                    <img src="images/client-2.png" alt="" class="img-1">
+                  </div>
+                  <div class="name">
+                    <h6>
+                      Adipiscing
+                    </h6>
+                    <p>
+                      Magna
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="box">
+                <div class="detail-box">
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                  </p>
+                </div>
+                <div class="client_id">
+                  <div class="img-box">
+                    <img src="images/client-1.png" alt="" class="img-1">
+                  </div>
+                  <div class="name">
+                    <h6>
+                      Adipiscing
+                    </h6>
+                    <p>
+                      Magna
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="box">
+                <div class="detail-box">
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                  </p>
+                </div>
+                <div class="client_id">
+                  <div class="img-box">
+                    <img src="images/client-2.png" alt="" class="img-1">
+                  </div>
+                  <div class="name">
+                    <h6>
+                      Adipiscing
+                    </h6>
+                    <p>
+                      Magna
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+  <!-- end client section -->
+
+  <!-- contact section -->
+  <!-- <section class="contact_section">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-4 col-md-5 offset-md-1">
+          <div class="heading_container">
+            <h2>
+              Contact Us
+            </h2>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4 col-md-5 offset-md-1">
+          <div class="form_container contact-form">
+            <form action="">
+              <div>
+                <input type="text" placeholder="Your Name" />
+              </div>
+              <div>
+                <input type="text" placeholder="Phone Number" />
+              </div>
+              <div>
+                <input type="email" placeholder="Email" />
+              </div>
+              <div>
+                <input type="text" class="message-box" placeholder="Message" />
+              </div>
+              <div class="btn_box">
+                <button>
+                  SEND
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-lg-7 col-md-6 px-0">
+          <div class="map_container">
+            <div class="map">
+              <div id="googleMap"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+  <!-- end contact section -->
 
   <!-- info section -->
 
@@ -275,21 +508,22 @@
               Links
             </h4>
             <div class="info_links">
-              <a class="active" href="">
+              <a class="active" href="index.html">
+                <img src="images/nav-bullet.png" alt="">
                 Home
               </a>
-              <a class="" href="">
+              <a class="" href="about.html">
+                <img src="images/nav-bullet.png" alt="">
                 PG
               </a>
-              <a class="" href="">
-               HOSTEL
+              <a class="" href="service.html">
+                <img src="images/nav-bullet.png" alt="">
+                Hostel
               </a>
-              <a class="" href="">
-                Register
-              </a>
-              <a class="" href="">
-                Login
-              </a>
+              <!-- <a class="" href="contact.html">
+                <img src="images/nav-bullet.png" alt="">
+                Contact Us
+              </a> -->
             </div>
           </div>
         </div>
@@ -314,8 +548,8 @@
   <section class="footer_section">
     <div class="container">
       <p>
-        &copy; <span id="displayYear"></span> All Rights Reserved 
-        <!-- <a href="https://html.design/">Free Html Templates</a> -->
+        &copy; <span id="displayYear"></span> All Rights Reserved By
+        <a href="https://html.design/">Free Html Templates</a>
       </p>
     </div>
   </section>
@@ -341,147 +575,3 @@
 </body>
 
 </html>
-
-<!-- {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home</title>
-    <link rel="stylesheet" href="{% static 'css/style2.css' %}" />
-  </head>
-  <body>
-    <header class="header">
-      <nav class="navbar">
-        <h2 class="logo"><a href="#">PHMS</a></h2>
-        <input type="checkbox" id="menu-toggle" />
-        <label for="menu-toggle" id="hamburger-btn">
-          <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
-            <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-        </label>
-        <ul class="links">
-          <li><a href="#">Home</a></li>
-          <li><a href="loginview">PG</a></li>
-          <li><a href="#">HOSTEL</a></li>
-        </ul>
-        <div class="buttons">
-          <a href="login" class="login">LOGIN</a>
-          <a href="register" class="register">REGISTER</a>
-        </div>
-      </nav>
-    </header>
-    <section class="hero-section">
-      <div class="hero">
-        <h2>PG/HOSTEL</h2>
-        <p>
-          Affordable and Comfortable PG and Hostel
-        </p>
-        <div class="buttons">
-          <a href="#" class="join">Search</a>
-         <a href="#" class="learn">Learn More</a> 
-        </div>
-      </div>
-      <div class="img">
-      </div>
-    </section>
-  </body>
-</html>
-
-{% load static %}
-<!DOCTYPE html>
- Coding By CodingNepal - codingnepalweb.com
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Website with Login & Registration Form</title>
-    <link rel="stylesheet" href="{% static 'css/index.css' %}" />
-     Unicons -->
-  <!--  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
-  </head>
-  <body>
-     Header -->
-   <!-- <header class="header">
-      <nav class="nav">
-        <a href="#" class="nav_logo">CodingLab</a>
-
-        <ul class="nav_items">
-          <li class="nav_item">
-            <a href="#" class="nav_link">Home</a>
-            <a href="#" class="nav_link">Product</a>
-            <a href="#" class="nav_link">Services</a>
-            <a href="#" class="nav_link">Contact</a>
-          </li>
-        </ul>
-
-        <button class="button" id="form-open">Login</button>
-      </nav>
-    </header>
-
-    Home -->
-   <!-- <section class="home">
-      <div class="form_container">
-        <i class="uil uil-times form_close"></i>
-        Login From -->
-     <!--   <div class="form login_form">
-          <form action="#">
-            <h2>Login</h2>
-
-            <div class="input_box">
-              <input type="email" placeholder="Enter your email" required />
-              <i class="uil uil-envelope-alt email"></i>
-            </div>
-            <div class="input_box">
-              <input type="password" placeholder="Enter your password" required />
-              <i class="uil uil-lock password"></i>
-              <i class="uil uil-eye-slash pw_hide"></i>
-            </div>
-
-            <div class="option_field">
-              <span class="checkbox">
-                <input type="checkbox" id="check" />
-                <label for="check">Remember me</label>
-              </span>
-              <a href="#" class="forgot_pw">Forgot password?</a>
-            </div>
-
-            <button class="button">Login Now</button>
-
-            <div class="login_signup">Don't have an account? <a href="#" id="signup">Signup</a></div>
-          </form>
-        </div>
-
-        
-        <div class="form signup_form">
-          <form action="#">
-            <h2>Signup</h2>
-
-            <div class="input_box">
-              <input type="email" placeholder="Enter your email" required />
-              <i class="uil uil-envelope-alt email"></i>
-            </div>
-            <div class="input_box">
-              <input type="password" placeholder="Create password" required />
-              <i class="uil uil-lock password"></i>
-              <i class="uil uil-eye-slash pw_hide"></i>
-            </div>
-            <div class="input_box">
-              <input type="password" placeholder="Confirm password" required />
-              <i class="uil uil-lock password"></i>
-              <i class="uil uil-eye-slash pw_hide"></i>
-            </div>
-
-            <button class="button">Signup Now</button>
-
-            <div class="login_signup">Already have an account? <a href="#" id="login">Login</a></div>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <script src="script.js"></script> 
-  </body>
-</html> ->
