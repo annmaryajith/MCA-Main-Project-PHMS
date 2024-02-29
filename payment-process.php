@@ -1,37 +1,41 @@
 <?php
-include('conn.php'); 
+include('conn.php');
 session_start();
-date_default_timezone_set("Asia/Calcutta");
+
+if (!isset($_SESSION['book_id'])) {
+    echo "Book ID not found in session.";
+    exit();
+}
 
 $payment_id = isset($_POST['payment_id']) ? $_POST['payment_id'] : '';
 $amount = isset($_POST['amount']) ? $_POST['amount'] : '';
-//$description = isset($_POST['description']) ? $_POST['description'] : '';
+$book_id = $_SESSION['book_id'];
+$user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : '';
 
-// Fetch client email from the URL
-$userid = $_SESSION['username'];
+$clientQuery = "SELECT user_id FROM users WHERE username = ?";
+$stmt = $conn->prepare($clientQuery);
+$stmt->bind_param("s", $_SESSION['username']);
+$stmt->execute();
+$clientResult = $stmt->get_result();
 
-// Fetch client_id based on the email
-$clientQuery = "SELECT user_id FROM users WHERE username = '$userid'";
-$clientResult = mysqli_query($conn, $clientQuery);
-// echo $clientQuery;
-
-if ($clientResult && mysqli_num_rows($clientResult) > 0) {
-    $clientRow = mysqli_fetch_assoc($clientResult);
+if ($clientResult && $clientResult->num_rows > 0) {
+    $clientRow = $clientResult->fetch_assoc();
     $clientid = $clientRow['user_id'];
 
-    // Insert data into the payment table
-    $sql = "INSERT INTO payment (user_id, amount, payment_id) 
-            VALUES ('$clientid', '$amount', '$payment_id')";
-
-    $result = mysqli_query($conn, $sql);
-
-    if ($result) {
+    $sql = "INSERT INTO payment (book_id, user_id, amount, payment_id) 
+            VALUES (?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("iids", $book_id, $clientid, $amount, $payment_id);
+    if ($stmt->execute()) {
         echo 'done';
         $_SESSION['payment_id'] = $payment_id;
     } else {
-        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        echo "Error: " . $stmt->error;
     }
 } else {
     echo "Error fetching user information.";
 }
+
+$stmt->close();
+$conn->close();
 ?>
