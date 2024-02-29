@@ -72,6 +72,9 @@ if ($availability_result && $availability_result->num_rows > 0) {
             $stmt->bind_param("iis", $user_id, $hostel_id, $booked_room_type);
             if ($stmt->execute()) {
                 // Booking details inserted successfully
+                // After successfully inserting booking details into the database
+                $book_id = $conn->insert_id; // Assuming $conn is your MySQLi connection object
+                $_SESSION['book_id'] = $book_id;
 
                 // Check if the user has opted for advance payment
                 if ($advance_payment == 1) {
@@ -79,11 +82,11 @@ if ($availability_result && $availability_result->num_rows > 0) {
                     include('payment.php');
                     // This will execute the payment processing logic from payment.php
                 } else {
-                    // If no advance payment is made, simply display the "Booking Done" message
-                    echo "Booking Done. No advance payment made.";
+                    // If no advance payment is made, display the booking confirmation message
+                    // Use JavaScript to show an interactive message
+                    echo '<script>alert("Booking Done. No advance payment made."); window.location.href = "user.php";</script>';
                 }
 
-                // echo "Room booked successfully.";
             } else {
                 echo "Error inserting booking: " . $conn->error;
             }
@@ -96,7 +99,6 @@ if ($availability_result && $availability_result->num_rows > 0) {
 } else {
     echo "Room type not found.";
 }
-
 
 $conn->close();
 ?>
