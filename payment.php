@@ -1,6 +1,10 @@
 <?php
-session_start();
+// session_start();
 include('conn.php');
+if (!isset($_SESSION)) {
+    session_start();
+}
+
 if (isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
 } else {
@@ -26,9 +30,6 @@ if (isset($_SESSION['username'])) {
             margin: 0;
             padding: 0;
         }
-       
-       
-    
         /* Style the sidebar */
    .sidebar {
             height: 100%;
@@ -182,7 +183,7 @@ if (isset($_SESSION['username'])) {
                 var paymentid = response.razorpay_payment_id;
 
                 $.ajax({
-                    url: "payment-process.php?username=" + username, // Fix: Use "email" as the parameter
+                    url: "payment-process.php?username=" + username, 
                     type: "POST",
                     data: { payment_id: paymentid, amount: amount},
                     success: function (finalresponse) {
@@ -220,7 +221,5 @@ function toggleSidebar() {
 }
 
 </script>
-
 </body>
-
 </html>
