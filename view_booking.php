@@ -25,7 +25,7 @@ if (mysqli_num_rows($result_user_id) > 0) {
     $user_id = $row['user_id'];
 
     // Fetch bookings for the current user
-    $sql_bookings = "SELECT book.book_id, hostels.hostel_name, book.booked_room_type, book.booking_date
+    $sql_bookings = "SELECT book.book_id, hostels.hostel_name, book.booked_room_type, book.checkin_date, book.checkout_date, book.booking_date
                      FROM book
                      INNER JOIN hostels ON book.hostel_id = hostels.hostel_id
                      WHERE book.user_id = '$user_id'";
@@ -115,6 +115,8 @@ mysqli_close($conn);
                     <th>Booking ID</th>
                     <th>Hostel Name</th>
                     <th>Booked Room Type</th>
+                    <th>Check-In Date</th>
+                    <th>Check-Out Date</th>
                     <th>Booking Date</th>
                     <th>Action</th> <!-- New column for cancellation button -->
                 </tr>
@@ -125,6 +127,8 @@ mysqli_close($conn);
                         <td><?php echo $booking['book_id']; ?></td>
                         <td><?php echo $booking['hostel_name']; ?></td>
                         <td><?php echo $booking['booked_room_type']; ?></td>
+                        <td><?php echo $booking['checkin_date']; ?></td> <!-- Display check-in date -->
+                        <td><?php echo $booking['checkout_date']; ?></td> <!-- Display check-out date -->
                         <td><?php echo $booking['booking_date']; ?></td>
                         <td>
                             <form action="cancel_booking.php" method="POST">
