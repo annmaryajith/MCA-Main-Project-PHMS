@@ -29,19 +29,24 @@ if ($user_result->num_rows == 1) {
     exit();
 }
 
-// Retrieve the hostel_id from the form data
-$hostel_id = isset($_POST['hostel_id']) ? $_POST['hostel_id'] : null;
-if ($hostel_id === null) {
-    // Handle the case where hostel_id is not provided
-    echo "Error: Hostel ID not provided.";
-    exit();
-}
-
-// Retrieve form data
-$booked_room_type = $_POST['booked_room_type'];
+// Retrieve form data and perform input validation
+$booked_room_type = isset($_POST['booked_room_type']) ? $_POST['booked_room_type'] : null;
 $advance_payment = isset($_POST['advance_payment']) ? $_POST['advance_payment'] : 0;
-$advance_amount = isset($_POST['advance_amount']) ? $_POST['advance_amount'] : 0;
-$hostel_id = $_POST['hostel_id']; // Retrieve hostel_id from the form data
+$hostel_id = isset($_POST['hostel_id']) ? $_POST['hostel_id'] : null;
+$check_in_date = isset($_POST['check_in_date']) ? $_POST['check_in_date'] : null;
+$check_out_date = isset($_POST['check_out_date']) ? $_POST['check_out_date'] : null;
+
+// if (!$booked_room_type || !$hostel_id || !$check_in_date || !$check_out_date) {
+//     // Handle the case where required fields are not provided
+//     echo "Error: Required fields are missing.";
+//     exit();
+// }
+
+// // Check if the check-out date is before the check-in date
+// if ($check_out_date < $check_in_date) {
+//     echo "Error: Check-out date cannot be before check-in date.";
+//     exit();
+// }
 
 // Check the availability of rooms for the selected room type
 $availability_query = "SELECT available_rooms FROM room_types WHERE room_type_name = ?";
@@ -67,9 +72,9 @@ if ($availability_result && $availability_result->num_rows > 0) {
             // Room booked successfully
 
             // Insert booking details into the database
-            $insert_booking_query = "INSERT INTO book (user_id, hostel_id, booked_room_type, booking_date) VALUES (?, ?, ?, NOW())";
+            $insert_booking_query = "INSERT INTO book (user_id, hostel_id, booked_room_type, checkin_date, checkout_date, booking_date) VALUES (?, ?, ?, ?, ?, NOW())";
             $stmt = $conn->prepare($insert_booking_query);
-            $stmt->bind_param("iis", $user_id, $hostel_id, $booked_room_type);
+            $stmt->bind_param("iisss", $user_id, $hostel_id, $booked_room_type, $check_in_date, $check_out_date);
             if ($stmt->execute()) {
                 // Booking details inserted successfully
                 // After successfully inserting booking details into the database
@@ -86,19 +91,20 @@ if ($availability_result && $availability_result->num_rows > 0) {
                     // Use JavaScript to show an interactive message
                     echo '<script>alert("Booking Done. No advance payment made."); window.location.href = "user.php";</script>';
                 }
-
             } else {
-                echo "Error inserting booking: " . $conn->error;
+                echo "Error inserting booking: " . $stmt->error;
             }
         } else {
-            echo "Error updating available rooms: " . $conn->error;
+            echo "Error updating available rooms: " . $stmt->error;
         }
     } else {
-        echo "No available rooms for the selected room type.";
+        echo '<script>alert("No available rooms for the selected room type."); window.location.href = "book_room.php";</script>';
+
     }
 } else {
     echo "Room type not found.";
 }
 
-$conn->close();
+$stmt->close(); // Close the prepared statement
+$conn->close(); // Close the database connection
 ?>
