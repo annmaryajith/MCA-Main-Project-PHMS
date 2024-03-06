@@ -6,7 +6,7 @@
     <style>
               body {
     font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
+    background-color: #ffffff;
 }
 
 .container {
@@ -132,6 +132,7 @@ if (isset($_SESSION['username'])) {
             echo '<th>Available Rooms</th>';
             echo '<th>Price Per Day</th>';
             echo '<th>Price Per Month</th>';
+            echo '<th>Action</th>';
             echo '</tr>';
 
             while ($row = $room_result->fetch_assoc()) {
@@ -141,6 +142,7 @@ if (isset($_SESSION['username'])) {
                 echo '<td>' . $row['available_rooms'] . '</td>';
                 echo '<td>' . ($row['price_per_day'] ?? 'N/A') . '</td>'; // Display 'N/A' if price is not available
                 echo '<td>' . ($row['price_per_month'] ?? 'N/A') . '</td>'; // Display 'N/A' if price is not available
+                echo '<td><a href="update_hostelroom.php?room_type_name=' . $row['room_type_name'] . '">Update</a></td>';
                 echo '</tr>';
             }
 
