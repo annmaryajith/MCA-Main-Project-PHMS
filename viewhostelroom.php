@@ -79,9 +79,10 @@ th {
             <h2>   PHMS | Hostel Owner</h2>
             <ul>
                 <li><a href="hostelowner_dashboard.php">Home</a></li>
-                <li><a href="addhostelroom.php">Add Rooms</a></li>
+                <li><a href="owner_interface.php">Add Rooms</a></li>
                 <li><a href="viewhostelroom.php">View Rooms</a></li>
                 <!-- <li><a href="hostelroomupdate.php">Update room</a></li> -->
+                <li><a href="hosteldetailsupdate.php">Update Hostel details</a></li>
                 <li><a href="hostelownerupdate.php">Update</a></li>
                 <!-- <li><a href="manage_tenants.php">Manage Tenants</a></li>
                 <li><a href="reports.php">Reports</a></li> -->
@@ -92,63 +93,70 @@ th {
     <body>
     <div class="containerr">
     <!-- <h2>Rooms</h2> -->
-<?php
+    
+    <?php
 // Include necessary files and start session
 session_start();
 include('conn.php');
 
 // Check if the owner is logged in
 if (isset($_SESSION['username'])) {
-    // Redirect to the login page if not logged in
-    
+    // Get the owner's username
     $owner_username = $_SESSION['username'];
 
-    // Get the owner's ID from the owners table based on the username
-    $owner_query = "SELECT hostelowner_id FROM hostel_owners1 WHERE username = '$owner_username'";
-    $owner_result = $conn->query($owner_query);
+    // Query to retrieve the hostel ID based on the owner's username
+    $hostel_query = "SELECT h.hostel_id FROM hostels h
+                     JOIN hostel_owners1 ho ON h.hostel_name = ho.hostel_name
+                     WHERE ho.username = '$owner_username'";
+    $hostel_result = $conn->query($hostel_query);
 
-    if ($owner_result->num_rows > 0) {
-        $owner_row = $owner_result->fetch_assoc();
-        $owner_id = $owner_row['hostelowner_id'];
+    if ($hostel_result->num_rows > 0) {
+        // Fetch the hostel ID
+        $hostel_row = $hostel_result->fetch_assoc();
+        $hostel_id = $hostel_row['hostel_id'];
 
-        // Retrieve rooms associated with the owner
-        $room_query = "SELECT status,room_number, room_type, price FROM hostel_rooms WHERE hostelowner_id = $owner_id";
+        // Query to retrieve room details and their corresponding price details
+        $room_query = "SELECT rt.room_type_name, rt.total_rooms, rt.available_rooms, hd.price_per_day, hd.price_per_month
+                       FROM room_types rt
+                       LEFT JOIN hostelprice_details hd ON rt.room_type_id = hd.room_type_id AND hd.hostel_id = rt.hostel_id
+                       WHERE rt.hostel_id = $hostel_id";
         $room_result = $conn->query($room_query);
-// Display the list of rooms
-echo '<h2>List of Hostel Rooms</h2>';
 
-if ($room_result->num_rows > 0) {
-    echo '<table>';
-    echo '<tr>';
-    echo '<th>Room Number</th>';
-    echo '<th>Room Type</th>';
-    echo '<th>Price</th>';
-    echo '<th>Status</th>';
-    echo '<th>Action</th>';
-    echo '</tr>';
+        if ($room_result->num_rows > 0) {
+            // Display the list of rooms and their prices
+            echo '<h2>List of Hostel Rooms</h2>';
+            echo '<table>';
+            echo '<tr>';
+            echo '<th>Room Type</th>';
+            echo '<th>Total Rooms</th>';
+            echo '<th>Available Rooms</th>';
+            echo '<th>Price Per Day</th>';
+            echo '<th>Price Per Month</th>';
+            echo '</tr>';
 
-    while ($row = $room_result->fetch_assoc()) {
-        echo '<tr>';
-        echo '<td>' . $row['room_number'] . '</td>';
-        echo '<td>' . $row['room_type'] . '</td>';
-        echo '<td>' . $row['price'] . '</td>';
-        echo '<td>';
-        if ($row['status'] == 1) {
-            echo '<button onclick="changeStatus(\'' . $row['room_number'] . '\', 0);">Deactivate</button>';
+            while ($row = $room_result->fetch_assoc()) {
+                echo '<tr>';
+                echo '<td>' . $row['room_type_name'] . '</td>';
+                echo '<td>' . $row['total_rooms'] . '</td>';
+                echo '<td>' . $row['available_rooms'] . '</td>';
+                echo '<td>' . ($row['price_per_day'] ?? 'N/A') . '</td>'; // Display 'N/A' if price is not available
+                echo '<td>' . ($row['price_per_month'] ?? 'N/A') . '</td>'; // Display 'N/A' if price is not available
+                echo '</tr>';
+            }
+
+            echo '</table>';
         } else {
-            echo '<button onclick="changeStatus(\'' . $row['room_number'] . '\', 1);">Activate</button>';
-        }        
-        echo '</td>';
-        echo '<td><a href="update_hostelroom.php?room_number=' . $row['room_number'] . '">Update</a></td>';
-        echo '</tr>';
+            echo 'No rooms available.';
+        }
+    } else {
+        echo 'Hostel ID not found.';
     }
-
-    echo '</table>';
-}
-}} else {
+} else {
     echo 'No rooms available.';
 }
 ?>
+
+
     <script>
      function changeStatus(roomNumber, currentStatus) {
         var newStatus = currentStatus === 1 ? 0 : 1; // Toggle status
@@ -176,4 +184,4 @@ if ($room_result->num_rows > 0) {
 </script>
 
 </body>
-</html
+</html>
