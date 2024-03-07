@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,6 +15,13 @@
   <!-- bootstrap core css -->
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
   <!-- fonts style -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
 
@@ -103,9 +109,19 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="user.php">HOSTEL</a>
-              <li class="nav-item">
-                <a class="nav-link" href="useredit.php">PROFILE</a>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Profile & Booking
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="useredit.php">Edit Profile</a>
+                    <a class="dropdown-item" href="view_booking.php">View Booking</a>
+                </div>
               </li>
+
+              <!-- <li class="nav-item">
+                <a class="nav-link" href="useredit.php">PROFILE</a>
+              </li> -->
               <li class="nav-item">
                 <a class="nav-link" href="logout.php"> <i class="fa fa-user" aria-hidden="true"></i> Logout</a>
               </li>
@@ -195,57 +211,111 @@
     }
     </style>
 </head>
-
 <body>
-
 <div class="hostel-container">
     <?php
     include('conn.php');
 
+    // Check if the connection is successful
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
     }
 
-    // Fetch hostel data from the database
-    $sql = "SELECT * FROM hostels";
+    // Fetch hostel data from the database along with corresponding price details
+    $sql = "SELECT h.*, rt.room_type_name, hd.price_per_day, hd.price_per_month 
+            FROM hostels h
+            LEFT JOIN hostelprice_details hd ON h.hostel_id = hd.hostel_id
+            LEFT JOIN room_types rt ON hd.room_type_id = rt.room_type_id";
     $result = mysqli_query($conn, $sql);
 
-    // Display hostels
-    while ($row = mysqli_fetch_assoc($result)) {
-      echo "<div class='hostel'>";
-      echo "<img src='images/" . $row['image'] . "' alt='" . $row['hostel_name'] . "'>";
-      echo "<div class='hostel-content'>";
-      echo "<h2>" . $row['hostel_name'] . "</h2>";
-      echo "<p><strong>Location:</strong> " . $row['hostel_location'] . "</p>";
-      echo "<p>" . $row['description'] . "</p>";
+    // Check if the query was successful
+    if ($result) {
+        // Initialize an array to store hostel details
+        $hostels = array();
 
-      // Fetch available room types for this hostel
-      $hostel_id = $row['hostel_id'];
-      $room_types_sql = "SELECT * FROM room_types WHERE hostel_id = '$hostel_id' AND available_rooms > 0";
-      $room_types_result = mysqli_query($conn, $room_types_sql);
+        // Fetch and store hostel details along with room types and prices
+        while ($row = mysqli_fetch_assoc($result)) {
+            $hostel_id = $row['hostel_id'];
 
-      if (mysqli_num_rows($room_types_result) > 0) {
-          echo "<p><strong>Available Room Types:</strong></p>";
-          echo "<ul>";
-          while ($room_type_row = mysqli_fetch_assoc($room_types_result)) {
-              echo "<li>" . $room_type_row['room_type_name'] . "</li>";
-          }
-          echo "</ul>";
-      } else {
-          echo "<p>No available room types for this hostel.</p>";
-      }
-      echo "<a href='book_room.php?hostel_id=" . $row['hostel_id'] . "'><button class='book-button'>Book Now</button></a>";
-    //   echo "<a href='book_room.php'><button class='book-button'>Book Now</button></a>";
-      echo "</div>";
-      echo "</div>";
-  }
+            // If the hostel entry doesn't exist in the array, create a new entry
+            if (!isset($hostels[$hostel_id])) {
+                $hostels[$hostel_id] = array(
+                    'hostel_name' => $row['hostel_name'],
+                    'hostel_location' => $row['hostel_location'],
+                    'description' => $row['description'],
+                    'image' => $row['image'],
+                    'room_types' => array(),
+                );
+            }
+
+            // Check if the room type has both prices available and add it only once
+            if ($row['room_type_name'] != null && $row['price_per_day'] > 0 && $row['price_per_month'] > 0) {
+                $room_type_name = $row['room_type_name'];
+                if (!isset($hostels[$hostel_id]['room_types'][$room_type_name])) {
+                    $hostels[$hostel_id]['room_types'][$room_type_name] = array(
+                        'price_per_day' => $row['price_per_day'],
+                        'price_per_month' => $row['price_per_month']
+                    );
+                }
+            }
+
+            // Check if the room type has only price per day or per month and add it
+            if ($row['room_type_name'] != null && ($row['price_per_day'] > 0 || $row['price_per_month'] > 0)) {
+                $hostels[$hostel_id]['room_types'][$row['room_type_name']] = array(
+                    'price_per_day' => $row['price_per_day'],
+                    'price_per_month' => $row['price_per_month']
+                );
+            }
+        }
+
+        // Display hostels and their details
+        foreach ($hostels as $hostel_id => $hostel) {
+            echo "<div class='hostel'>";
+            echo "<img src='images/" . $hostel['image'] . "' alt='" . $hostel['hostel_name'] . "'>";
+            echo "<div class='hostel-content'>";
+            echo "<h2>" . $hostel['hostel_name'] . "</h2>";
+            echo "<p><strong>Location:</strong> " . $hostel['hostel_location'] . "</p>";
+            echo "<p>" . $hostel['description'] . "</p>";
+        
+            // Display room types and their respective prices
+            if (!empty($hostel['room_types'])) {
+                echo "<p><strong>Available Room Types:</strong></p>";
+                echo "<ul>";
+                foreach ($hostel['room_types'] as $room_type_name => $room_type) {
+                    if ($room_type['price_per_day'] > 0 || $room_type['price_per_month'] > 0) {
+                        echo "<li>" . $room_type_name . " - ";
+                        if ($room_type['price_per_day'] > 0) {
+                            echo "Price Per Day: Rs. " . $room_type['price_per_day'];
+                        }
+                        if ($room_type['price_per_month'] > 0) {
+                            if ($room_type['price_per_day'] > 0) {
+                                echo ", ";
+                            }
+                            echo "Price Per Month: Rs. " . $room_type['price_per_month'];
+                        }
+                        echo "</li>";
+                    }
+                }
+                echo "</ul>";
+            } else {
+                echo "<p>No available room types for this hostel.</p>";
+            }
+            echo "<a href='book_room.php?hostel_id=" . $hostel_id . "'><button class='book-button'>Book Now</button></a>";
+            echo "</div>";
+            echo "</div>";
+        }
+        
+    } else {
+        echo "Error executing query: " . mysqli_error($conn);
+    }
 
     // Close the database connection
     mysqli_close($conn);
     ?>
 </div>
-</body>
 
+
+</body>
 </html>
 
 <!-- <!DOCTYPE html>
