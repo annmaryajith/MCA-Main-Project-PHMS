@@ -56,128 +56,30 @@ mysqli_close($conn);
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <!-- Bootstrap JS -->
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  
-<!-- fonts style -->
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
-
-<!--owl slider stylesheet -->
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
-
-<!-- font awesome style -->
-<link href="css/font-awesome.min.css" rel="stylesheet" />
-
-<!-- Custom styles for this template -->
-<link href="css/styleuser.css" rel="stylesheet" />
-<!-- responsive style -->
-<link href="css/responsive.css" rel="stylesheet" />
-<style>
-    .pg-container {
-      display: flex;
-      flex-direction: column; /* Stack items vertically */
-      align-items: center; 
-      justify-content: center;
-      align-items: center;
-     }
-      .pg {
-          border: 1px solid #ccc;
-          margin: 50px;
-          padding: 10px;
-          display: flex;
-          max-width: 600px; 
-          align-items: center; /* Center items horizontally */
-          width: 100%; /* Take up 100% width */
-      }
-
-      .pg img {
-          max-width: 200px;
-          max-height: 150px;
-          margin-right: 20px; 
-      }
-
-      .pg-content {
-        flex-grow: 1; 
-      }
-
-      .book-button {
-          background-color: #000000;
-          color: white;
-          padding: 5px 10px;
-          border: none;
-          border-radius: 5px;
-          cursor: pointer;
-      }
-
-      .search-container {
-          display: flex;
-          align-items: center;
-          padding: 20px;
-          background-color: #fff;
-          margin-left: 10px; /* Adjust the margin as needed */
-      }
-
-      .search-container input[type="text"] {
-          width: 400px; /* Adjust the width of the text box */
-          margin-right: 10px; /* Add space between the text box and the button */
-      }
-  </style>
-</head>
-<body>
-<header class="header_section">
-    <div class="container-fluid">
-      <nav class="navbar navbar-expand-lg custom_nav-container ">
-        <a class="navbar-brand" href="">
-          <span>
-            PHMS
-          </span>
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class=""> </span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav  ">
-            <!-- <li class="nav-item active">
-              <a class="nav-link" href="userhome.php">Home <span class="sr-only">(current)</span></a>
-            </li> -->
-            <li class="nav-item">
-              <a class="nav-link" href="pguserview.php"> PG</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="user.php">HOSTEL</a>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Profile & Booking
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="useredit.php">Edit Profile</a>
-                  <a class="dropdown-item" href="view_booking.php">View Booking</a>
-              </div>
-            </li>
-
-            <!-- <li class="nav-item">
-              <a class="nav-link" href="useredit.php">PROFILE</a>
-            </li> -->
-            <li class="nav-item">
-              <a class="nav-link" href="logout.php"> <i class="fa fa-user" aria-hidden="true"></i> Logout</a>
-            </li>
-            </form>
-          </ul>
-        </div>
-      </nav>
-    </div>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/favicon.png" type="">
+    <!-- bootstrap core css -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!-- Bootstrap JS -->
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- fonts style -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <!--owl slider stylesheet -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+    <!-- font awesome style -->
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="css/styleuser.css" rel="stylesheet" />
+    <!-- responsive style -->
+    <link href="css/responsive.css" rel="stylesheet" />
     <title>View Bookings</title>
+    <!-- Add your CSS styles here -->
     <style>
-        /* Add your CSS styles here */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -211,8 +113,8 @@ mysqli_close($conn);
         .cancel-button {
             background-color: #ff0000;
             color: #fff;
+            padding: 5px 10px;
             border: none;
-            padding: 8px 16px;
             border-radius: 5px;
             cursor: pointer;
         }
@@ -221,6 +123,43 @@ mysqli_close($conn);
         }
     </style>
 </head>
+<header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container ">
+          <a class="navbar-brand" href="">
+            <span>
+              PHMS
+            </span>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class=""> </span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav  ">
+
+              <li class="nav-item">
+                <a class="nav-link" href="pguserview.php"> PG</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="user.php">HOSTEL</a>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Profile & Booking
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="useredit.php">Edit Profile</a>
+                    <a class="dropdown-item" href="view_booking.php">View Booking</a>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="logout.php"> <i class="fa fa-user" aria-hidden="true"></i> Logout</a>
+              </li>
+              </form>
+            </ul>
+          </div>
+        </nav>
+      </div>
 <body>
 
 <div class="container">
@@ -239,6 +178,7 @@ mysqli_close($conn);
                 </tr>
             </thead>
             <tbody>
+                <?php $index = 0; // Initialize index variable ?>
                 <?php foreach ($bookings as $booking) { ?>
                     <tr>
                         <td><?php echo $index + 1; ?></td> <!-- Display serial number -->
@@ -254,6 +194,7 @@ mysqli_close($conn);
                             </form>
                         </td>
                     </tr>
+                    <?php $index++; // Increment index after each iteration ?>
                 <?php } ?>
             </tbody>
         </table>
