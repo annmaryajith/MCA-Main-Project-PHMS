@@ -111,6 +111,7 @@ input[type="submit"]:hover {
                 <li><a href="addhostelroom.php">Add Rooms</a></li>
                 <li><a href="viewhostelroom.php">View Rooms</a></li>
                 <!-- <li><a href="hostelroomupdate.php">Update room</a></li> -->
+                <li><a href="hosteldetailsupdate.php">Update Hostel details</a></li>
                 <li><a href="hostelownerupdate.php">Update</a></li>
                 <!-- <li><a href="manage_tenants.php">Manage Tenants</a></li>
                 <li><a href="reports.php">Reports</a></li> -->

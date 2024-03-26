@@ -120,12 +120,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["create_owner"])) {
     <div class="sidebar">
         <h2>Admin Dashboard</h2>
         <ul>
-            
             <li><a href="admin.php">Home</a></li>
             <li><a href="userview.php">Users</a></li>
             <li>
-                <a href="javascript:void(0);" onclick="toggleHostelSubmenu()">Pg</a>
-                <div class="sub-options" style="display: none;">
+                <a href="javascript:void(0);" onclick="toggleSubmenu('pgSubmenu')">Pg</a>
+                <div id="pgSubmenu" class="sub-options" style="display: none;">
                     <ul>
                         <li><a href="viewpg.php">View Pg</a></li>
                         <li><a href="addpg.php">Add Pg</a></li>
@@ -133,13 +132,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["create_owner"])) {
                         <li><a href="addpgowner.php">Add Owner</a></li>
                     </ul>
                 </div>
-                </li>
+            </li>
             <li>
-                <a href="javascript:void(0);" onclick="toggleHostelSubmenu()">Hostel</a>
-                <div class="sub-options" style="display: none;">
+                <a href="javascript:void(0);" onclick="toggleSubmenu('hostelSubmenu')">Hostel</a>
+                <div id="hostelSubmenu" class="sub-options" style="display: none;">
                     <ul>
                         <li><a href="viewhostel.php">View Hostel</a></li>
                         <li><a href="addhostel.php">Add Hostel</a></li>
+                        <li><a href="viewowner.php">View Owner</a></li>
                         <li><a href="addowner.php">Add Owner</a></li>
                     </ul>
                 </div>
@@ -150,12 +150,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["create_owner"])) {
 </div>
 
 <script>
-    function toggleHostelSubmenu() {
-        var subOptions = document.querySelector(".sub-options");
-        if (subOptions.style.display === "none" || subOptions.style.display === "") {
-            subOptions.style.display = "block";
+    function toggleSubmenu(submenuId) {
+        var submenu = document.getElementById(submenuId);
+        if (submenu.style.display === "none" || submenu.style.display === "") {
+            submenu.style.display = "block";
         } else {
-            subOptions.style.display = "none";
+            submenu.style.display = "none";
         }
     }
 </script>
