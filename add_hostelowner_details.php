@@ -140,7 +140,7 @@ if (isset($_SESSION['username'])) {
     </div>
     <div class="main-content">
         <h1 style="margin-top: 20px; color: #333; text-align: center;">Add Owner Details</h1>
-        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" onsubmit="return validateForm()">
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required><br>
 
@@ -151,5 +151,29 @@ if (isset($_SESSION['username'])) {
         </form>
     </div>
 </div>
+
+<script>
+    function validateForm() {
+        var email = document.getElementById('email').value;
+        var phone = document.getElementById('phno').value;
+
+        // Email validation
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            alert("Please enter a valid email address.");
+            return false;
+        }
+
+        // Phone number validation
+        var phoneRegex = /^\d{10}$/;
+        if (!phoneRegex.test(phone)) {
+            alert("Please enter a 10-digit phone number.");
+            return false;
+        }
+
+        return true; // Submit the form if validation passes
+    }
+</script>
+
 </body>
 </html>
