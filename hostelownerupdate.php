@@ -1,9 +1,8 @@
 <?php
+session_start();
 include('conn.php'); // Include your database connection code
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_profile"])) {
-    session_start();
-
     // Get PG owner's username from the session
     $username = $_SESSION['username'];
 
@@ -15,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_profile"])) {
     $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
 
     // Update the PG owner's information in the database
-    $update_query = "UPDATE hostel_owners1 SET hostel_owner= '$pg_owner_name', password = '$new_password' WHERE username = '$username'";
+    $update_query = "UPDATE hostel_owners1 SET hostel_owner = '$pg_owner_name', password = '$new_password' WHERE username = '$username'";
 
     if ($conn->query($update_query) === TRUE) {
         echo '<script>alert("Profile updated successfully!");</script>';
@@ -23,7 +22,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_profile"])) {
         echo "Error updating profile: " . $conn->error;
     }
 }
+
+// Fetch hostel owner's name based on the logged-in username
+$username = $_SESSION['username'];
+$get_owner_name_query = "SELECT hostel_owner FROM hostel_owners1 WHERE username = '$username'";
+$result = $conn->query($get_owner_name_query);
+
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $current_hostel_owner_name = $row['hostel_owner'];
+} else {
+    $current_hostel_owner_name = ''; // Default value if name not found
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -116,7 +128,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_profile"])) {
             <li><a href="viewhostelroom.php">View Rooms</a></li>
             <li><a href="add_hostel_details.php">Add Hostel details</a></li>
             <li><a href="hosteldetailsupdate.php">Update Hostel details</a></li>
-            <li><a href="hostelownerupdate.php">Update profile</a></li>
+            <li><a href="add_hostelowner_details.php">Add owner details</a></li>
+                <li><a href="hostelownerupdate.php">Update profile</a></li>
             <li><a href="logout.php" class="logout">Logout</a></li>
         </ul>
     </div>
@@ -125,7 +138,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_profile"])) {
         <div class="form-container">
             <form method="post" action="">
                 <label for="pg_owner_name">Hostel Owner Name:</label>
-                <input type="text" name="pg_owner_name" id="pg_owner_name" required>
+                <input type="text" name="pg_owner_name" id="pg_owner_name" value="<?php echo $current_hostel_owner_name; ?>" required>
                 <label for="new_password">New Password:</label>
                 <input type="password" name="new_password" id="new_password" required>
                 <input type="submit" name="update_profile" value="Update Profile">
