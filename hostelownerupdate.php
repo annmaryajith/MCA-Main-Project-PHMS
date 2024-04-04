@@ -42,24 +42,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_profile"])) {
         }
 
         .sidebar {
-    width: 250px;
-    height: 100%;
-    overflow-y: auto;
-    position: fixed;
-    background-color: #001f3f; /* Dark blue background color */
-    color: #fff;
-}
+            width: 250px;
+            height: 100%;
+            overflow-y: auto;
+            position: fixed;
+            background-color: #001f3f; /* Dark blue background color */
+            color: #fff;
+        }
 
-.sidebar a {
-    padding: 10px;
-    display: block;
-    color: #fff;
-    text-decoration: none;
-}
+        .sidebar a {
+            padding: 10px;
+            display: block;
+            color: #fff;
+            text-decoration: none;
+        }
 
-.sidebar a:hover {
-    background-color: #003366; /* Slightly lighter shade of blue on hover */
-}
+        .sidebar a:hover {
+            background-color: #003366; /* Slightly lighter shade of blue on hover */
+        }
+
         .main-content {
             flex: 1;
             padding: 20px;
@@ -70,11 +71,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_profile"])) {
             margin: 0 auto;
             background-color: #fff;
             padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         .form-container label {
             display: block;
             margin-bottom: 10px;
+            color: #333; /* Label text color */
         }
 
         .form-container input[type="text"],
@@ -83,21 +87,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_profile"])) {
             padding: 10px;
             margin-bottom: 10px;
             box-sizing: border-box;
+            border: 1px solid #ccc; /* Border color */
+            border-radius: 5px;
+            font-size: 16px;
         }
 
         input[type="submit"] {
-    background-color: #001f3f; /* Dark blue background matching sidebar */
-    color: #fff; /* White text */
-    padding: 8px 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
+            background-color: #001f3f; /* Dark blue button color */
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s; /* Smooth transition effect */
+        }
 
-input[type="submit"]:hover {
-    background-color: #003366; /* Slightly lighter shade of blue on hover */
-}
-
+        input[type="submit"]:hover {
+            background-color: #003366; /* Darker shade of blue on hover */
+        }
     </style>
 </head>
 <body>
@@ -105,9 +112,11 @@ input[type="submit"]:hover {
         <h2>Hostel Owner Dashboard</h2>
         <ul>
             <li><a href="hostelowner_dashboard.php">Home</a></li>
-            <li><a href="addhostelroom.php">Add Rooms</a></li>
+            <li><a href="owner_interface.php">Add Rooms</a></li>
             <li><a href="viewhostelroom.php">View Rooms</a></li>
-            <li><a href="hostelownerupdate.php">Update</a></li>
+            <li><a href="add_hostel_details.php">Add Hostel details</a></li>
+            <li><a href="hosteldetailsupdate.php">Update Hostel details</a></li>
+            <li><a href="hostelownerupdate.php">Update profile</a></li>
             <li><a href="logout.php" class="logout">Logout</a></li>
         </ul>
     </div>
@@ -123,6 +132,30 @@ input[type="submit"]:hover {
             </form>
         </div>
     </div>
+    <script>
+         function validateForm() {
+            var pgOwnerName = document.getElementById('pg_owner_name').value;
+            var newPassword = document.getElementById('new_password').value;
+
+            if (pgOwnerName.trim() === '') {
+                alert('Please enter Hostel Owner Name');
+                return false;
+            }
+
+            if (newPassword.trim() === '') {
+                alert('Please enter New Password');
+                return false;
+            }
+
+            // Check if the password length is between 6 and 20 characters
+            if (newPassword.length < 6 || newPassword.length > 20) {
+                alert('Password must be between 6 and 20 characters');
+                return false;
+            }
+
+            return true;
+        }
+    </script>
 </body>
 </html>
 
