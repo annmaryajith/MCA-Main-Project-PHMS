@@ -161,6 +161,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <li><a href="viewhostelroom.php">View Rooms</a></li>
             <li><a href="add_hostel_details.php">Add Hostel details</a></li>
             <li><a href="hosteldetailsupdate.php">Update Hostel details</a></li>
+            <li><a href="add_hostelowner_details.php">Add owner details</a></li>
             <li><a href="hostelownerupdate.php">Update profile</a></li>
             <li><a href="logout.php" class="logout">Logout</a></li>
         </ul>
