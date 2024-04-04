@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PHMS | Hostel Owner - Insert Available Rooms</title>
+    <title>Insert Available Rooms</title>
     <style>
-        /* Your CSS styles here */
-        body {
+       body {
             font-family: Arial, sans-serif;
             background-color: #f2f2f2;
             margin: 0;
@@ -81,14 +80,14 @@
         }
 
         input[type="submit"] {
-            background-color: #007bff;
+            background-color: #001f3f; /* Dark blue button color */
             color: #fff;
             cursor: pointer;
             transition: background-color 0.3s;
         }
 
         input[type="submit"]:hover {
-            background-color: #0056b3;
+            background-color: #003366; /* Darker shade of blue on hover */
         }
 
         .price-options {
@@ -117,17 +116,19 @@
     </style>
 </head>
 <body>
-    <!-- <div class="sidebar">
+    <div class="sidebar">
         <h2>PHMS | Hostel Owner</h2>
         <ul>
             <li><a href="hostelowner_dashboard.php">Home</a></li>
             <li><a href="owner_interface.php">Add Rooms</a></li>
             <li><a href="viewhostelroom.php">View Rooms</a></li>
+            <li><a href="add_hostel_details.php">Add Hostel details</a></li>
             <li><a href="hosteldetailsupdate.php">Update Hostel details</a></li>
-            <li><a href="hostelownerupdate.php">Update </a></li>
+            <li><a href="add_hostelowner_details.php">Add owner details</a></li>
+            <li><a href="hostelownerupdate.php">Update profile</a></li>
             <li><a href="logout.php" class="logout">Logout</a></li>
         </ul>
-    </div> -->
+    </div>
 
     <div class="main-content">
         <div class="form-container">
@@ -153,7 +154,7 @@
     <div class="price-option">
         <input type="checkbox" id="per_day" class="price-checkbox" name="price_option" value="per_day">
         <label for="per_day">Per Day Price:</label>
-        <input type="number" id="price_per_day" class="price-input" name="price_per_day" >
+        <input type="number" id="price_per_day" class="price-input" name="price_per_day" placeholder="Enter per day price">
     </div>
 
     <div class="price-option">
