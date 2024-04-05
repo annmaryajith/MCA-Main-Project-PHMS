@@ -209,6 +209,35 @@
     .book-button:hover {
         background-color: #0056b3;
     }
+
+    .chat-icon-container {
+      position: fixed;
+      bottom: 20px; /* Adjust the distance from the bottom */
+      right: 20px; /* Adjust the distance from the right */
+      z-index: 9999; /* Ensure the chat icon appears on top of other elements */
+    }
+
+    .chat-icon-container img {
+      width: 60px; /* Adjust the size of the chat icon */
+      height: auto;
+      cursor: pointer; /* Show pointer cursor when hovering over the icon */
+      transition: transform 0.2s ease; /* Add smooth transition effect */
+    }
+
+    /* Add pulsating animation effect */
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    .pulse-animation {
+      animation: pulse 2s ease-in-out infinite; /* Apply pulsating animation */
+    }
+
+    .chat-icon-container img:hover {
+      box-shadow: 0 0 20px rgba(0, 0, 255, 1); /* Increase glow intensity on hover (adjust color and intensity as needed) */
+    }
     </style>
 </head>
 <body>
@@ -300,7 +329,7 @@
             } else {
                 echo "<p>No available room types for this hostel.</p>";
             }
-            echo "<a href='book_room.php?hostel_id=" . $hostel_id . "'><button class='book-button'>Book Now</button></a>";
+            echo "<a href='hosteldetailspage.php?hostel_id=" . $hostel_id . "'><button class='book-button'>Book Now</button></a>";
             echo "</div>";
             echo "</div>";
         }
@@ -314,6 +343,11 @@
     ?>
 </div>
 
+<div class="chat-icon-container">
+  <a href="chatbot.php"> <!-- Link the icon to your chatbot page -->
+    <img src="images/chat-icon.jpeg" alt="Chat Icon" class="pulse-animation"> <!-- Replace chat-icon.png with the path to your chat icon image -->
+  </a>
+</div>
 
 </body>
 </html>
