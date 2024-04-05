@@ -42,9 +42,9 @@ if (strpos($txt, "suggest a hostel in") !== false) {
 }
 
 // Save the user query and bot response in the database
-$added_on = date('Y-m-d h:i:s');
+$added_on = date('Y-m-d H:i:s'); // Use 'H' instead of 'h' for 24-hour format
 mysqli_query($conn, "INSERT INTO message(message, added_on, type) VALUES ('$txt', '$added_on', 'user')");
-$added_on = date('Y-m-d h:i:s');
+$added_on = date('Y-m-d H:i:s'); // Use 'H' instead of 'h' for 24-hour format
 mysqli_query($conn, "INSERT INTO message(message, added_on, type) VALUES ('$html', '$added_on', 'bot')");
 
 echo $html;
