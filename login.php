@@ -28,7 +28,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($user_status == 1) {
             // User's status is '1' (active), so allow login
             $_SESSION['username'] = $username;
-            header('Location: pguserview.php');
+            header('Location: user.php');
+            // header('Location: pguserview.php');
             exit();
         } else {
             // User's status is '0' (inactive), so block login
@@ -36,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     } else {
 
-        echo "Invalid username or password.";
+        $message = "Invalid username or password.";
     }
     
 
@@ -96,11 +97,24 @@ $conn->close();
       <meta charset="utf-8">
       <title> Login Form </title>
       <link rel="stylesheet" href="css/style0.css">
-      
+      <style>
+        .message {
+            background-color: #ffffff; /* White background color */
+            color: #000000; /* Black text color */
+            border: 1px solid #ced4da; /* Default border color */
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+    </style>
    </head>
    <body>
       <div class="bg-img">
          <div class="content">
+         <?php if (isset($message)): ?>
+            <div class="message"><?php echo $message; ?></div>
+        <?php endif; ?>
+
             <header>Login Form</header>
             <form action="" method="POST" id="login-form">
                <div class="field">
