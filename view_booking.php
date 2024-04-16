@@ -36,9 +36,12 @@ if (mysqli_num_rows($result_user_id) > 0) {
 
     // Check if bookings exist
     if ($result_bookings) {
+        $currentDate = date('Y-m-d');
         while ($row = mysqli_fetch_assoc($result_bookings)) {
-            // Add booking details to the array
-            $bookings[] = $row;
+            if ($row['checkin_date'] >= $currentDate) {
+                // Add booking details to the array
+                $bookings[] = $row;
+            }
         }
     } else {
         // Handle case where there is an error in the SQL query execution
