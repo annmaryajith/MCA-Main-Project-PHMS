@@ -133,10 +133,11 @@
             </select>
 
             <label for="check_in_date">Check-In Date:</label>
-            <input type="date" id="check_in_date" name="check_in_date" required>
+            <input type="date" id="check_in_date" name="check_in_date" onchange="setCheckOutDate()" required>
 
             <label for="check_out_date">Check-Out Date:</label>
             <input type="date" id="check_out_date" name="check_out_date" required>
+            <input type="hidden" id="hidden_check_out_date" name="check_out_date">
 
             <label for="advance_payment">
                 <input type="checkbox" id="advance_payment" name="advance_payment" value="1">
@@ -180,9 +181,21 @@
         var selectedRoomType = document.getElementById("booked_room_type").value;
 
         sessionStorage.setItem('selectedRoomType', selectedRoomType);
+        document.getElementById("hidden_check_out_date").value = document.getElementById("check_out_date").value;
 
         return true;
     }
+    function setCheckOutDate() {
+    var checkInDate = new Date(document.getElementById("check_in_date").value);
+    // Set the checkout date as the next day after one month from the check-in date
+    var oneMonthLater = new Date(checkInDate.getFullYear(), checkInDate.getMonth() + 1, checkInDate.getDate() + 1);
+    var formattedDate = oneMonthLater.toISOString().slice(0, 10);
+    document.getElementById("check_out_date").value = formattedDate;
+    document.getElementById("hidden_check_out_date").value = formattedDate;
+    // Disable the checkout date input field after setting its value
+    document.getElementById("check_out_date").disabled = true;
+    }
+
 </script>
 
 </body>
