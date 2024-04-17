@@ -21,9 +21,10 @@ session_start();
         <div class="alert alert-success">
             <strong>Please note your payment id!</strong><?php echo $_SESSION['payment_id'];?>
         </div>
-
     </div>
-
+    <!-- Redirect to booking success page after 5 seconds -->
+    <?php echo '<meta http-equiv="refresh" content="5;url=booking-success.php">'; ?>
+    </div>
 </body>
 
 </html>
