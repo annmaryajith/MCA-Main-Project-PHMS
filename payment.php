@@ -21,141 +21,83 @@ if (isset($_SESSION['username'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-</head>
-<style>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        /* Style the sidebar */
-   .sidebar {
-            height: 100%;
-            width: 250px;
-            position: fixed;
-            top: 76px;
-            left: -250px;
-            background-color: #333;
-            overflow-x: hidden;
-            transition: 0.5s;
-            text-align: left;
-            padding-top: 60px;
-            color: #fff;
-        }
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
 
-        .sidebar a {
-            padding: 8px 16px;
-            text-decoration: none;
-            font-size: 18px;
-            color: #fff;
-            display: block;
-            transition: 0.3s;
-            margin: 15px 0;
-        }
+  <!--owl slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
 
-        .sidebar a:hover {
-            background-color: #00D2FC;
-            color: #fff;
-        }
+  <!-- font awesome style -->
+  <link href="css/font-awesome.min.css" rel="stylesheet" />
 
-        .openbtn {
-            font-size: 30px;
-            cursor: pointer;
-            position: fixed;
-            z-index: 1;
-            top: 10px;
-            left: 10px;
-            color: #00d2fc;
-        }
+  <!-- Custom styles for this template -->
+  <link href="css/styleuser.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
+</head>
 
-        .icon {
-            margin-right: 10px;
-            font-size: 20px;
-        }
+    <header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container ">
+          <a class="navbar-brand" href="">
+            <span>
+              PHMS
+            </span>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class=""> </span>
+          </button>
 
-        /* Add a background color for the links */
-        .sidebar a {
-            background-color: #333;
-        }
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav  ">
+              <!-- <li class="nav-item active">
+                <a class="nav-link" href="userhome.php">Home <span class="sr-only">(current)</span></a>
+              </li> -->
+              <li class="nav-item">
+                <a class="nav-link" href="pguserview.php"> PG</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="user.php">HOSTEL</a>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Profile & Booking
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="useredit.php">Edit Profile</a>
+                    <a class="dropdown-item" href="view_booking.php">View Booking</a>
+                </div>
+              </li>
 
-        /* On hover, the background color and text color change */
-        .sidebar a:hover {
-            background-color: #00D2FC;
-            color: #fff;
-        }
-/*main */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-           
-
-        }
-        .dashboard-container {
-            margin:-7px;
-            
-            padding-left: 388px;
-        }
-
-        .dashboard-box {
-            max-width: 600px; /* Adjust the width as needed */
-            padding: 20px;
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            font-size: 32px;
-            color: #fff;
-            text-align: center; /* Center the heading text */
-        }
-        a {
-            text-decoration: none;
-            color: #0074D9;
-        }
-        a.navbar-brand {
-            color: black;  /* Set the text color to black */
-            text-decoration: none;  /* Remove the underline */
-            font-weight: bold;
-            color: #fff;
-            font-size: 24px;
-            margin-left: 45px;
-            padding: 0px;
-
-        }
-        img {
-            width: 39px;
-            height: 39px;
-        }
-    </style>
+              <!-- <li class="nav-item">
+                <a class="nav-link" href="useredit.php">PROFILE</a>
+              </li> -->
+              <li class="nav-item">
+                <a class="nav-link" href="logout.php"> <i class="fa fa-user" aria-hidden="true"></i> Logout</a>
+              </li>
+              </form>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
 <body>
-
-    <!-- <div class="openbtn" onclick="toggleSidebar()">&#9776;</div> -->
-
     <div id="container" class="dashboard-container">
     <div class="dashboard-box">
             <form id="paymentForm">
                 <div class="mb-3">
                     <label for="amount" class="form-label">Payment Amount</label>
-                    <input type="text" class="form-control" id="amount" name="amount" required>
+                    <input type="text" class="form-control" id="amount" name="amount" value="1000" readonly required>
                 </div>
-                <!-- <div class="mb-3">
-                    <label for="description" class="form-label">Description</label>
-                    <input type="text" class="form-control" id="description" name="description" required>
-                </div> -->
-
                 <?php
-                // Get the client email from the URL
                 $username = $_SESSION['username'];
                 ?>
 
@@ -165,13 +107,49 @@ if (isset($_SESSION['username'])) {
             </form>
         </div>
     </div>
+    <style>
+        .dashboard-box {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
+        .form-label {
+            font-weight: bold;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
     $(".buynow").click(function () {
         var amount = $("#amount").val();
-        // var description = $("#description").val();
         var username = $("#username").val();
 
         var options = {
@@ -207,9 +185,7 @@ if (isset($_SESSION['username'])) {
         var rzp1 = new Razorpay(options);
         rzp1.open();
     });
-
-    let sidebarOpen = false;
-
+    // let sidebarOpen = false;
 function toggleSidebar() {
     const sidebar = document.getElementById("mySidebar");
     if (sidebarOpen) {
